@@ -16,7 +16,7 @@ function parse(command){
       tokens.push({type:'INFO'});
     }
 
-    else if(value == 'use' || value == 'read' || value == 'attack' || value == 'examine'){
+    else if(value == 'use' || value == 'read' || value == 'attack' || value == 'examine' || value == 'eat'){
       tokens.push({type:'USE',value:value});
     }
 

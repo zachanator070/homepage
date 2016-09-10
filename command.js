@@ -60,10 +60,11 @@ room2.inventory = [
           if (target.hasOwnProperty('name')){
             return 'You smack the '+target.name+" with the chair with rage like you are"+
             " facing your greatest foe in the ring with the crowd shouting \'USE THE CHAIR\',"+
-            " but alas no one is around to notice your victory over the "+target.name+".";
+            " but alas no one is around to notice your victory over the "+target.name+". Your wrestling,"+
+            " moves have no effect otherwise.";
           }
           else{
-            return 'It\'s a book. That\'s not how it is used.';
+            return 'A sword is very usefull, but not that usefull.';
           }
         }
       }
@@ -110,22 +111,33 @@ room4.description = "Upon entering the room, you hear a loud \'BANG\' as steel b
   " on a table in the center of the room. A note is on the table next to the cake.";
 room4.inventory=[
     {
+      name:'cake',
+      use:function(){
+        room4.description = "Upon entering the room, you hear a loud \'BANG\' as steel bars fall"+
+          " covering the doorway you just came through. You see no other exit from the room."+
+          " The table have the reminants of a cake on it, left over from your party for one."+
+          " A note is on the table next to the cake.";
+        return "You stuff your face in the cake. No one is around to enjoy this cake,"+
+        " so you have a sad birthday party by yourself.";
+      }
+    },
+    {
       name:'note',
       use:function(target){
         playing = false;
-        return 'The note reads: Here is the cake as promised.\nThanks for playing!\n'+
+        return 'The note reads: Here is the cake as promised.\n'+
         " _____   ___  ___  ___ _____ \n"+
         "|  __ \\ / _ \\ |  \\/  ||  ___| \n"+
         "| |  \\// /_\\ \\| .  . || |__  \n"+
         "| | __ |  _  || |\\/| ||  __|  \n"+
         "| |_\\ \\| | | || |  | || |___ \n"+
         " \\____/\\_| |_/\\_|  |_/\\____/ \n"+
-        "   _____  _   _ ___________ \n"+
+        "  _____  _   _ ___________ \n"+
         " |  _  || | | |  ___| ___ \\\n"+
         " | | | || | | | |__ | |_/ /\n"+
         " | | | || | | |  __||    /\n"+
-        " \\ \\_/ /\ \\_/ / |___| |\\ \\\n"+
-        " \\___/  \\___/\\____/\\_| \\_| \n";
+        " \\ \\_/ /\\ \\_/ / |___| |\\ \\\n"+
+        "  \\___/  \\___/\\____/\\_| \\_| \n";
       }
     }
   ]
