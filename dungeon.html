@@ -20,7 +20,9 @@
 
       // make our cursor blink
       window.setInterval(function(){
-        blink();
+        if(playing){
+            blink();
+        }
       }, 500);
     </script>
 

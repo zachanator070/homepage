@@ -16,7 +16,7 @@ function parse(command){
       tokens.push({type:'INFO'});
     }
 
-    else if(value == 'use' || value == 'read' || value == 'attack'){
+    else if(value == 'use' || value == 'read' || value == 'attack' || value == 'examine'){
       tokens.push({type:'USE',value:value});
     }
 
@@ -34,6 +34,14 @@ function parse(command){
 
     else if(value == 'inventory' || value == 'inv'){
       tokens.push({type:'INVENTORY'});
+    }
+
+    else if(value == 'speak' || value == 'say' || value == 'talk' || value == 'yell' || value == 'scream' || value == 'whisper'){
+      tokens.push({type:'SAY',value:value});
+    }
+
+    else if(value == ""){
+      // do nothing for blank values
     }
 
     else{

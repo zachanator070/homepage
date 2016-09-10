@@ -34,7 +34,7 @@ room2.inventory = [
     {
       name:'book',
       use:function(target){
-        if(target == NULL){
+        if(target == null){
             return "The old tome reads: Speak friend and enter.";
         }
         else{
@@ -50,7 +50,7 @@ room2.inventory = [
     {
       name:'chair',
       use:function(target){
-        if(target == NULL){
+        if(target == null){
             return "You sit down on the chair and start to comtemplate on life. You "+
             "notice how cold, dark, and depressing this dungeon is and decide that those"+
             " princesses aren\'t going to rescue themselves or else some other guy wearing"+
@@ -70,7 +70,7 @@ room2.inventory = [
     }
   ];
 
-room3.description="The room is lit up with a spectacular light radiating from a glorius"+
+room3.description="The room is lit up with a spectacular light radiating from a glorius "+
   "sword protruding out of the ground. A plaque against the wall reads: It is dangerous to"+
   " go alone, take this. There is a door that leads to the south.";
 room3.southDoor={};
@@ -80,7 +80,7 @@ room3.inventory=[
     {
       name:'sword',
       use:function(target){
-        if(target == NULL){
+        if(target == null){
             return "The sword is somehow glowing despite this dark depressing dungeon."+
             " You feel heroic and courageous by just wielding the mighty blade.";
         }
@@ -113,20 +113,19 @@ room4.inventory=[
       name:'note',
       use:function(target){
         playing = false;
-        return 'The note reads: Here is the cake as promised. \nThanks for playing!\n'+
-        " _____   ___  ___  ___ _____\n"+
-        "|  __ \\ / _ \ |  \\/  ||  ___|\n"+
-        "| |  \\// /_\\ \| .  . || |__  \n"+
+        return 'The note reads: Here is the cake as promised.\nThanks for playing!\n'+
+        " _____   ___  ___  ___ _____ \n"+
+        "|  __ \\ / _ \\ |  \\/  ||  ___| \n"+
+        "| |  \\// /_\\ \\| .  . || |__  \n"+
         "| | __ |  _  || |\\/| ||  __|  \n"+
         "| |_\\ \\| | | || |  | || |___ \n"+
-        "\\____/\\_| |_/\\_|  |_/\\____/\n"+
-        "\n"+
-        "   _____  _   _ ___________\n"+
+        "\\____/\\_| |_/\\_|  |_/\\____/ \n"+
+        "   _____  _   _ ___________ \n"+
         " |  _  || | | |  ___| ___ \\\n"+
         " | | | || | | | |__ | |_/ /\n"+
         " | | | || | | |  __||    /\n"+
         " \\ \\_/ /\ \\_/ / |___| |\\ \\\n"+
-        "   \\___/  \\___/\\____/\\_| \\_|\n";
+        "   \\___/  \\___/\\____/\\_| \\_| \n";
       }
     }
   ]
@@ -150,6 +149,10 @@ function doCommand(tokens){
 
     else if(token.type == 'TAKE'){
       doTake(tokens);
+    }
+
+    else if(token.type == 'SAY'){
+      doSay(tokens);
     }
 
     else if(token.type == 'INFO'){
@@ -202,7 +205,7 @@ function doGo(tokens){
       if(position.hasOwnProperty('northDoor')){
         if(position.northDoor.status == "unlocked"){
           position = position.northDoor.room;
-          showRoomInfo();
+          addNewLine(position.description);
         }
         else{
           addNewLine('The door is locked.')
@@ -217,7 +220,7 @@ function doGo(tokens){
       if(position.hasOwnProperty('southDoor')){
         if(position.southDoor.status == "unlocked"){
           position = position.southDoor.room;
-          showRoomInfo();
+          addNewLine(position.description);
         }
         else{
           addNewLine('The door is locked.')
@@ -232,7 +235,7 @@ function doGo(tokens){
       if(position.hasOwnProperty('eastDoor')){
         if(position.eastDoor.status == "unlocked"){
           position = position.eastDoor.room;
-          showRoomInfo();
+          addNewLine(position.description);
         }
         else{
           addNewLine('The door is locked.')
@@ -247,7 +250,7 @@ function doGo(tokens){
       if(position.hasOwnProperty('westDoor')){
         if(position.westDoor.status == "unlocked"){
           position = position.westDoor.room;
-          showRoomInfo();
+          addNewLine(position.description);
         }
         else{
           addNewLine('The door is locked.')
@@ -264,10 +267,10 @@ function doGo(tokens){
 function doUse(tokens){
 
   if(tokens.length == 2){
-    var name = tokens[1];
+    var name = tokens[1].value;
     var item = findItem(name);
-    if(item != NULL){
-      var result = item.use(NULL);
+    if(item != null){
+      var result = item.use(null);
       addNewLine(result);
     }
     else{
@@ -276,11 +279,15 @@ function doUse(tokens){
   }
   else if(tokens.length == 4){
 
-    var name1 = tokens[1];
-    var item1 = findItem(name);
+    var name1 = tokens[1].value;
+    var item1 = findItem(name1);
 
-    if(item1 != NULL){
-      if(item2 != NULL){
+    if(item1 != null){
+
+      var name2 = tokens[3].value;
+      var item2 = findItem(name2);
+
+      if(item2 != null){
         var result = item1.use(item2);
         addNewLine(result);
       }
@@ -302,8 +309,8 @@ function doUse(tokens){
 function doTake(tokens){
 
   if(tokens.length == 2){
-    var name = tokens[1];
-    var item = NULL;
+    var name = tokens[1].value;
+    var item = null;
     var index = -1;
 
     position.inventory.forEach(function(tempItem,tempIndex){
@@ -313,7 +320,7 @@ function doTake(tokens){
       }
     });
 
-    if(item != NULL){
+    if(item != null){
       position.inventory.splice(index,1);
       inventory.push(item);
       addNewLine("You pick up the "+name);
@@ -326,24 +333,50 @@ function doTake(tokens){
     addNewLine('You are trying to pick something up, but lost on how to do so.');
   }
 
+}
 
+function doSay(tokens){
+
+  var verb = tokens[0].value;
+
+  // remove SAY token
+  tokens.splice(0,1);
+
+  if(tokens.length == 1 && (tokens[0].value == 'friend' || tokens[0].value == 'mellon') && position == room2){
+    room2.northDoor.status = 'unlocked';
+    addNewLine('Your knowledge of The Lord of the Rings lore has paid off. You hear the door unlock and glow with elvish runes.');
+  }
+
+  var sentence = '';
+
+  tokens.forEach(function(value){
+    sentence += value.value + " ";
+  });
+
+  addNewLine('You '+verb+": "+sentence);
 }
 
 function findItem(name){
 
+  if(name == "door"){
+    return {name:"door"};
+  }
+
+  var item = null;
+
   inventory.forEach(function(tempItem){
     if(tempItem.name == name){
-      return tempItem;
+      item = tempItem;
     }
   });
 
   position.inventory.forEach(function(tempItem){
     if(tempItem.name == name){
-      return tempItem;
+      item = tempItem;
     }
   });
 
-  return NULL;
+  return item;
 }
 
 function showHelp(tokens){
@@ -386,13 +419,4 @@ function showHelp(tokens){
       addNewLine('No help information exists for that.');
     }
   }
-}
-
-function doGo(tokens){
-
-  // delete GO token
-  tokens.splice(0,1);
-  var token = tokens[0];
-
-
 }

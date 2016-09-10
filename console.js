@@ -34,7 +34,10 @@ function addChar(event){
 
     runCommand(lastLine);
 
-    addNewLine(">");
+    if(playing){
+      addNewLine(">");
+    }
+
   }
   // if backspace was pressed, then delete a character
   else if(code == 8){
@@ -78,20 +81,30 @@ function addNewLine(line){
     return;
   }
 
-  while(line.length > maxCharsPerLine){
-    addNewLine(line.substr(0,maxCharsPerLine));
-    line = line.substr(maxCharsPerLine,line.length - 1);
+  if(line.length > maxCharsPerLine){
+    var words = line.split(" ");
+    var tempLine = "";
+
+    words.forEach(function(word){
+      if((tempLine+word).length + 1 < maxCharsPerLine){
+        tempLine += word + " ";
+      }
+      else{
+        addNewLine(tempLine);
+        tempLine = word + " ";
+      }
+    });
+
+    addNewLine(tempLine);
+    return;
   }
 
   // if we are under our max lines
-  if(lines.length<maxLinesPerScreen){
-    lines.push(line);
-  }
-  // else delete the first line and push the new line on the array
-  else{
+  if(lines.length==maxLinesPerScreen){
     lines.splice(0,1);
-    lines.push(line);
   }
+
+  lines.push(line);
 
 }
 
@@ -102,8 +115,9 @@ function updateConsole(){
 
     // if the async call added a cursor, and it is not the last line, delete
     // the cursor
+
     if(index != lines.length-1 && value[value.length-1] == "|"){
-      lines[lines.length-1] = lastLine.substring(0, lastLine.length - 1);
+      lines[lines.length-1] = line.substring(0, line.length - 1);
     }
 
     content += value + "\r\n";
