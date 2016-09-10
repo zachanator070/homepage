@@ -5,11 +5,12 @@ body{
 
 #anchor{
   background-image: url('terminal.png');
-  width: 1920px;
-  height: 1080px;
+  width: 1400px;
+  height: 780px;
   position: absolute;
   top: 0px;
   left: 0px;
+  background-size: contain;
 }
 
 #console:focus {
@@ -25,6 +26,6 @@ body{
   color: rgb(102, 255, 51);
   font-size: 30px;
   position: absolute;
-  left: 500px;
+  left: 350px;
   top: 100px;
 }

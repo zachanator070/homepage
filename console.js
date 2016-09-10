@@ -1,7 +1,17 @@
 
+// global variables
 var lines = ['>'];
+var maxCharsPerLine = 50;
+var maxLinesPerScreen = 14;
+
+// used to determine if we will accept more commands
+var playing = true;
 
 function addChar(event){
+
+  if(!playing){
+    return;
+  }
 
   var code = event.which || event.keyCode;
 
@@ -12,10 +22,16 @@ function addChar(event){
   // if any key was pressed, and the cursor was showing, delete it
   if(lastLine[lastLine.length-1] == "|"){
     lines[lines.length-1] = lastLine.substring(0, lastLine.length - 1);
+    lastLine = lines[lines.length-1];
   }
 
   // if enter was pressed then process command
   if(key == "\r"){
+
+    if(lastLine[0] == ">"){
+      lastLine = lastLine.substr(1,lastLine.length - 1)
+    }
+
     runCommand(lastLine);
 
     addNewLine(">");
@@ -36,7 +52,7 @@ function addChar(event){
     }
 
     // if we went over the max charactters per line, add a new line
-    if(lastLine.length == 20){
+    if(lastLine.length == maxCharsPerLine){
       addNewLine("");
     }
     lines[lines.length-1] += key;
@@ -48,11 +64,30 @@ function addChar(event){
 
 }
 
+// adds new lines to the lines array
 function addNewLine(line){
 
-  if(lines.length<10){
+  var moreLines = line.split("\n");
+
+  if(moreLines.length >1){
+    moreLines.forEach(function(line){
+
+      addNewLine(line);
+
+    });
+    return;
+  }
+
+  while(line.length > maxCharsPerLine){
+    addNewLine(line.substr(0,maxCharsPerLine));
+    line = line.substr(maxCharsPerLine,line.length - 1);
+  }
+
+  // if we are under our max lines
+  if(lines.length<maxLinesPerScreen){
     lines.push(line);
   }
+  // else delete the first line and push the new line on the array
   else{
     lines.splice(0,1);
     lines.push(line);
