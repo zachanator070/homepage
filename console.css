@@ -1,9 +1,30 @@
+
+body{
+  background-color: black;
+}
+
+#anchor{
+  background-image: url('terminal.png');
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#console:focus {
+  outline: 0;
+}
+
 #console{
   height:500px;
   width:500px;
-  border:thin solid black;
   white-space:pre;
   font-family: VT323;
   background-color: black;
   color: rgb(102, 255, 51);
+  font-size: 30px;
+  position: absolute;
+  left: 500px;
+  top: 100px;
 }

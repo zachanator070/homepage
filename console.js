@@ -81,14 +81,13 @@ function updateConsole(){
 
 }
 
-function parse(command){
-
-
-}
-
 function runCommand(command){
 
+  // this function is defined in parse.js
   var tokens = parse(command);
+
+  // this function is defined in command.js
+  doCommand(tokens);
 
 }
 
