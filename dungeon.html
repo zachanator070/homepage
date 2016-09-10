@@ -1,0 +1,26 @@
+<html>
+  <head>
+
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Orbitron|Press+Start+2P|VT323" rel="stylesheet">
+    <script language='javascript' src='console.js' ></script>
+    <link rel='stylesheet' href='console.css' type="text/css">
+  </head>
+
+  <body>
+    <div id='console' onkeydown='addChar(event)' tabindex="1">
+
+    </div>
+
+    <script>
+      // display initial prompt
+      updateConsole();
+
+      // make our cursor blink
+      window.setInterval(function(){
+        blink();
+      }, 500);
+    </script>
+
+  </body>
+
+</html>

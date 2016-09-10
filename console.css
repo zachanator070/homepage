@@ -1,0 +1,9 @@
+#console{
+  height:500px;
+  width:500px;
+  border:thin solid black;
+  white-space:pre;
+  font-family: VT323;
+  background-color: black;
+  color: rgb(102, 255, 51);
+}
