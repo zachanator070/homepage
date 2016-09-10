@@ -394,6 +394,7 @@ function findItem(name){
 function showHelp(tokens){
   if(tokens.length == 1){
     addNewLine("Some available commands are:\n"+
+    "HELP [command]\n"+
     "GO [north | south | east | west]\n"+
     "USE [item]\n"+
     "USE [item>] WITH [item]\n"+
@@ -425,6 +426,10 @@ function showHelp(tokens){
 
     else if(token.type == 'INFO'){
       addNewLine("Displays the description of the current room.");
+    }
+
+    else if(token.type == 'HELP'){
+      addNewLine("You are already using the help command, it looks like you dont\'t need any more help.");
     }
 
     else{
