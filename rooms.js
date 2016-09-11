@@ -1,0 +1,143 @@
+
+var inventory=[];
+
+var room1 = {};
+var room2 = {};
+var room3 = {};
+var room4 = {};
+
+var position = room1;
+
+room1.description = 'You are in a cold dark room that smells of old socks. You are reminded'+
+  ' of those horrible days of gym class. You see a door to the north. It looks flimsy and you'+
+  ' bet that it would not last long against a sturdy weapon. A hallway leads to the east.';
+room1.northDoor={};
+room1.northDoor.status='locked';
+room1.northDoor.room= room4;
+room1.eastDoor={};
+room1.eastDoor.status='unlocked';
+room1.eastDoor.room = room2
+room1.inventory=[];
+
+room2.description="The room has lost of dirt on the floor, ground to a pulp from frequent"+
+  " use by the previous residents. A table with a chair sits neatly in the corner with an"+
+  " old book sitting on the table. There is a door to the north with a small window. You can see"+
+  " light peaking through from the next room. There is a hallway to the west where an offensive smell"+
+  " lurks.";
+room2.westDoor={};
+room2.westDoor.status='unlocked';
+room2.westDoor.room = room1;
+room2.northDoor={};
+room2.northDoor.status='locked';
+room2.northDoor.room=room3;
+room2.inventory = [
+    {
+      name:'book',
+      use:function(target){
+        if(target == null){
+            return "The old tome reads: Speak friend and enter.";
+        }
+        else{
+          if (target.hasOwnProperty('name')){
+            return 'You throw the book at the '+target.name+" and nothing happens.";
+          }
+          else{
+            return 'It\'s a book. That\'s not how it is used.';
+          }
+        }
+      }
+    },
+    {
+      name:'chair',
+      use:function(target){
+        if(target == null){
+            return "You sit down on the chair and start to comtemplate on life. You "+
+            "notice how cold, dark, and depressing this dungeon is and decide that those"+
+            " princesses aren\'t going to rescue themselves or else some other guy wearing"+
+            " green and some overalls will do it.";
+        }
+        else{
+          if (target.hasOwnProperty('name')){
+            return 'You smack the '+target.name+" with the chair with rage like you are"+
+            " facing your greatest foe in the ring with the crowd shouting \'USE THE CHAIR\',"+
+            " but alas no one is around to notice your victory over the "+target.name+". Your wrestling,"+
+            " moves have no effect otherwise.";
+          }
+          else{
+            return 'A sword is very usefull, but not that usefull.';
+          }
+        }
+      }
+    }
+  ];
+
+room3.description="The room is lit up with a spectacular light radiating from a glorius "+
+  "sword protruding out of the ground. A plaque against the wall reads: It is dangerous to"+
+  " go alone, take this. There is a door that leads to the south.";
+room3.southDoor={};
+room3.southDoor.status='unlocked';
+room3.southDoor.room=room2;
+room3.inventory=[
+    {
+      name:'sword',
+      use:function(target){
+        if(target == null){
+            return "The sword is somehow glowing despite this dark depressing dungeon."+
+            " You feel heroic and courageous by just wielding the mighty blade.";
+        }
+        else{
+          if (target.hasOwnProperty('name')){
+            if(target.name == 'door' && position.hasOwnProperty('northDoor') && position.northDoor.status == 'locked'){
+              position.northDoor.status = 'unlocked';
+              room1.description = 'You are in a cold dark room that smells of old socks. You are reminded'+
+              ' of those horrible days of gym class. The door to the north is smashed to bits, revealing another room. A hallway leads to the east.';
+              return 'You hack the door to pieces clearing the way into the room to the north.';
+
+            }
+            return 'The '+target.name+" is threatened by your sword. Although it is inannimate,"+
+            " its fear is palpable in the air.";
+          }
+          else{
+            return 'I don\'t know what to do here.';
+          }
+        }
+      }
+    }
+  ];
+
+room4.description = "Upon entering the room, you hear a loud \'BANG\' as steel bars fall"+
+  " covering the doorway you just came through. You see no other exit from the room."+
+  " The room is dimly lit by a single candle on a strawberry cake standing"+
+  " on a table in the center of the room. A note is on the table next to the cake.";
+room4.inventory=[
+    {
+      name:'cake',
+      use:function(){
+        room4.description = "Upon entering the room, you hear a loud \'BANG\' as steel bars fall"+
+          " covering the doorway you just came through. You see no other exit from the room."+
+          " The table have the reminants of a cake on it, left over from your party for one."+
+          " A note is on the table next to the cake.";
+        return "You stuff your face in the cake. No one is around to enjoy this cake,"+
+        " so you have a sad birthday party by yourself.";
+      }
+    },
+    {
+      name:'note',
+      use:function(target){
+        playing = false;
+        return 'The note reads: Here is the cake as promised.\n'+
+        " _____   ___  ___  ___ _____ \n"+
+        "|  __ \\ / _ \\ |  \\/  ||  ___| \n"+
+        "| |  \\// /_\\ \\| .  . || |__  \n"+
+        "| | __ |  _  || |\\/| ||  __|  \n"+
+        "| |_\\ \\| | | || |  | || |___ \n"+
+        " \\____/\\_| |_/\\_|  |_/\\____/ \n"+
+        "  _____  _   _ ___________ \n"+
+        " |  _  || | | |  ___| ___ \\\n"+
+        " | | | || | | | |__ | |_/ /\n"+
+        " | | | || | | |  __||    /\n"+
+        " \\ \\_/ /\\ \\_/ / |___| |\\ \\\n"+
+        "  \\___/  \\___/\\____/\\_| \\_| \n";
+      }
+    }
+  ];

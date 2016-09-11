@@ -4,6 +4,7 @@
     <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Orbitron|Press+Start+2P|VT323" rel="stylesheet">
     <script language='javascript' src='console.js' ></script>
     <script language='javascript' src='parse.js'></script>
+    <script language='javascript' src='rooms.js'></script>
     <script language='javascript' src='command.js'></script>
     <link rel='stylesheet' href='console.css' type="text/css">
   </head>
@@ -24,6 +25,11 @@
             blink();
         }
       }, 500);
+
+      // disable spacebar functionality for firefox
+      window.onkeydown = function(e) {
+        return !(e.keyCode == 32);
+      };
     </script>
 
   </body>
