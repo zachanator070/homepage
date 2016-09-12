@@ -5,8 +5,8 @@ body{
 
 #anchor{
   background-image: url('terminal.png');
-  width: 1400px;
-  height: 780px;
+  width: 1281px;
+  height: 1037px;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -28,7 +28,7 @@ body{
   font-size: 30px;
   position: absolute;
   left: 350px;
-  top: 100px;
+  top: 125px;
   z-index:-2;
 }
 

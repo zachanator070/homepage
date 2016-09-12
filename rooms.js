@@ -19,7 +19,7 @@ room1.eastDoor.status='unlocked';
 room1.eastDoor.room = room2
 room1.inventory=[];
 
-room2.description="The room has lost of dirt on the floor, ground to a pulp from frequent"+
+room2.description="The room has lots of dirt on the floor, ground to a pulp from frequent"+
   " use by the previous residents. A table with a chair sits neatly in the corner with an"+
   " old book sitting on the table. There is a door to the north with a small window. You can see"+
   " light peaking through from the next room. There is a hallway to the west where an offensive smell"+

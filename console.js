@@ -1,6 +1,6 @@
 
 // global variables
-var lines = ['You find yourself in a dark dank dungeon.','Typing \'help\' woud probably help.','>'];
+var lines = ['You find yourself in a dark dank dungeon.','Typing \'help\' would probably help.','>'];
 var maxCharsPerLine = 50;
 var maxLinesPerScreen = 14;
 
