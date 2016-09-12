@@ -2,7 +2,7 @@
 // global variables
 var lines = ['You find yourself in a dark dank dungeon.','Typing \'help\' would probably help.','>'];
 var maxCharsPerLine = 50;
-var maxLinesPerScreen = 13;
+var maxLinesPerScreen = 14;
 
 // used to determine if we will accept more commands
 var playing = true;
@@ -152,4 +152,8 @@ function blink(){
   }
 
   updateConsole();
+}
+
+function selectConsole(){
+  $('#console').focus();
 }
