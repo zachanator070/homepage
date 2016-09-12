@@ -11,6 +11,7 @@ body{
   top: 0px;
   left: 0px;
   background-size: contain;
+  z-index:-1;
 }
 
 #console:focus {
@@ -28,4 +29,27 @@ body{
   position: absolute;
   left: 350px;
   top: 100px;
+  z-index:-2;
+}
+
+@font-face{
+  font-family:titleFont;
+  src: url(ARCADECLASSIC.TTF);
+}
+
+
+header{
+  font-family:titleFont;
+  color:white;
+  height:80px;
+  font-size:80px;
+  padding-left:315px;
+}
+
+footer{
+  font-family:VT323;
+  color:white;
+  padding-top:575px;
+  font-size:30px;
+  padding-left:400px;
 }
