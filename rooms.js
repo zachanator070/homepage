@@ -68,6 +68,18 @@ room2.inventory = [
           }
         }
       }
+    },
+    {
+      name:'dirt',
+      use:function(target){
+        if(target == null){
+          return "You eat the dirt. You feel sick. You had low expectations of this, but were still disappointed.";
+        }
+        else{
+          return "The "+target.name+" is now smothered in dirt. You have made a mess of yourself "+
+          "and you are proud of it."
+        }
+      }
     }
   ];
 
