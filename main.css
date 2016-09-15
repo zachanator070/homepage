@@ -1,0 +1,121 @@
+
+body{
+  background-image: url('images/mountains.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Armata', sans-serif;
+}
+
+.horizontal-tile{
+  height:800px;
+  background-color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  padding:10px;
+  font-size: 20px;
+}
+
+.horizontal-tile-solid{
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.no-margin{
+  margin: 0px;
+}
+
+.container{
+  width:100%;
+  padding:0px;
+}
+
+h1{
+  margin:0px;
+}
+
+h1.accounts{
+  margin-top:100px;
+  margin-bottom:125px;
+}
+
+h1.iq{
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+h1.incognito{
+  margin-top:100px;
+  margin-bottom:125px;
+  color: black;
+  font-family: 'Armata', sans-serif;
+  font-size: 60px;
+  text-decoration: line-through rgba(255, 255, 255, 0.5);;
+}
+
+img.incognito{
+  margin-top:100px;
+  margin-bottom:125px;
+}
+
+p.incognito{
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 30px;
+}
+
+img.square{
+  height:350px;
+  width:400px;
+}
+
+h2{
+  padding:30px;
+}
+
+div.about{
+  text-align: center;
+}
+
+ul.about{
+  padding:10px;
+  text-align: left;
+  width: 33%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+li.about{
+  padding:5px;
+}
+
+img.icon{
+  height:50px;
+  width:50px;
+}
+
+img.med{
+  height: 300px;
+  width: 500px;
+}
+
+img.banner{
+  height: 200px;
+  width: 500px;
+}
+
+img.right{
+  float: right;
+  margin-left:100px;
+}
+
+img.left{
+  float: left;
+  margin-right:100px;
+}
+
+div.accounts{
+  padding:50px;
+}
+
+div.iq{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

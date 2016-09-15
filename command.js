@@ -70,7 +70,7 @@ function doGo(tokens){
     tokens.splice(0,1);
     var direction = tokens[0].value;
 
-    if(direction == 'north'){
+    if(direction == 'north' || direction == 'n'){
       if(position.hasOwnProperty('northDoor')){
         if(position.northDoor.status == "unlocked"){
           position = position.northDoor.room;
@@ -81,11 +81,11 @@ function doGo(tokens){
         }
       }
       else{
-        addNewLine('I cannot go that direction.');
+        addNewLine('You cannot go that direction.');
       }
     }
 
-    if(direction == 'south'){
+    else if(direction == 'south' || direction == 's'){
       if(position.hasOwnProperty('southDoor')){
         if(position.southDoor.status == "unlocked"){
           position = position.southDoor.room;
@@ -96,11 +96,11 @@ function doGo(tokens){
         }
       }
       else{
-        addNewLine('I cannot go that direction.');
+        addNewLine('You cannot go that direction.');
       }
     }
 
-    if(direction == 'east'){
+    else if(direction == 'east' || direction == 'e'){
       if(position.hasOwnProperty('eastDoor')){
         if(position.eastDoor.status == "unlocked"){
           position = position.eastDoor.room;
@@ -111,11 +111,11 @@ function doGo(tokens){
         }
       }
       else{
-        addNewLine('I cannot go that direction.');
+        addNewLine('You cannot go that direction.');
       }
     }
 
-    if(direction == 'west'){
+    else if(direction == 'west' || direction == 'w'){
       if(position.hasOwnProperty('westDoor')){
         if(position.westDoor.status == "unlocked"){
           position = position.westDoor.room;
@@ -126,8 +126,12 @@ function doGo(tokens){
         }
       }
       else{
-        addNewLine('I cannot go that direction.');
+        addNewLine('You cannot go that direction.');
       }
+    }
+
+    else{
+      addNewLine('You do not have the option to do that.')
     }
 
   }
@@ -190,9 +194,14 @@ function doTake(tokens){
     });
 
     if(item != null){
-      position.inventory.splice(index,1);
-      inventory.push(item);
-      addNewLine("You pick up the "+name);
+      if(item.mobile){
+        position.inventory.splice(index,1);
+        inventory.push(item);
+        addNewLine("You pick up the "+name);
+      }
+      else{
+        addNewLine("You cannot pick up the " + name);
+      }
     }
     else{
       addNewLine("You cannot find a "+name);
@@ -211,11 +220,6 @@ function doSay(tokens){
   // remove SAY token
   tokens.splice(0,1);
 
-  if(tokens.length == 1 && (tokens[0].value == 'friend' || tokens[0].value == 'mellon') && position == room2){
-    room2.northDoor.status = 'unlocked';
-    addNewLine('Your knowledge of The Lord of the Rings lore has paid off. You hear the door unlock and glow with elvish runes.');
-  }
-
   var sentence = '';
 
   tokens.forEach(function(value){
@@ -223,6 +227,11 @@ function doSay(tokens){
   });
 
   addNewLine('You '+verb+": "+sentence);
+
+  if(tokens.length == 1 && (tokens[0].value == 'friend' || tokens[0].value == 'mellon') && position == room2){
+    room2.northDoor.status = 'unlocked';
+    addNewLine('Your knowledge of The Lord of the Rings lore has paid off. You hear the door unlock and glow with elvish runes.');
+  }
 }
 
 function findItem(name){

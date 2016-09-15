@@ -19,11 +19,8 @@ room1.eastDoor.status='unlocked';
 room1.eastDoor.room = room2
 room1.inventory=[];
 
-room2.description="The room has lots of dirt on the floor, ground to a pulp from frequent"+
-  " use by the previous residents. A table with a chair sits neatly in the corner with an"+
-  " old book sitting on the table. There is a door to the north with a small window. You can see"+
-  " light peaking through from the next room. There is a hallway to the west where an offensive smell"+
-  " lurks.";
+room2.description="There is a door to the north. "+
+  "There is a hallway to the west where an offensive smell lurks.";
 room2.westDoor={};
 room2.westDoor.status='unlocked';
 room2.westDoor.room = room1;
@@ -33,6 +30,9 @@ room2.northDoor.room=room3;
 room2.inventory = [
     {
       name:'book',
+      mobile:true,
+      description:" An old book lies propped uo against the wall. It's pages look filled with "+
+      "wisdom from the sages of old.",
       use:function(target){
         if(target == null){
             return "The old tome reads: Speak friend and enter.";
@@ -49,6 +49,8 @@ room2.inventory = [
     },
     {
       name:'chair',
+      mobile:true,
+      description: "A chair stands in the room waiting for a suitor to plop their rump down for a rest.",
       use:function(target){
         if(target == null){
             return "You sit down on the chair and start to comtemplate on life. You "+
@@ -71,20 +73,37 @@ room2.inventory = [
     },
     {
       name:'dirt',
+      mobile:true,
+      description:"The room has lots of dirt on the floor, ground to a pulp from frequent"+
+        " use by the previous residents.",
       use:function(target){
         if(target == null){
           return "You eat the dirt. You feel sick. You had low expectations of this, but were still disappointed.";
         }
         else{
           return "The "+target.name+" is now smothered in dirt. You have made a mess of yourself "+
-          "and you are proud of it."
+          "and you are proud of it.";
+        }
+      }
+    },
+    {
+      name:'window',
+      mobile:false,
+      description: 'A window lies squarely on the door to the north. You can see the brilliant light of the next room '+
+      "peaking through the window.",
+      use:function(target){
+        if(target == null){
+          return "You peer through the window, you see a weapon of incredible strength inside, but it is out of your reach.";
+        }
+        else{
+          return "You place the "+target.name+" up against the glass so that the "+ target.name +
+          " can take a look too. You feel proud to help out an inannimate object.";
         }
       }
     }
   ];
 
-room3.description="The room is lit up with a spectacular light radiating from a glorius "+
-  "sword protruding out of the ground. A plaque against the wall reads: It is dangerous to"+
+room3.description="A plaque against the wall reads: It is dangerous to"+
   " go alone, take this. There is a door that leads to the south.";
 room3.southDoor={};
 room3.southDoor.status='unlocked';
@@ -92,6 +111,9 @@ room3.southDoor.room=room2;
 room3.inventory=[
     {
       name:'sword',
+      mobile:true,
+      description: "The room is lit up with a spectacular light radiating from a glorius "+
+        "sword protruding out of the ground.",
       use:function(target){
         if(target == null){
             return "The sword is somehow glowing despite this dark depressing dungeon."+
@@ -124,6 +146,7 @@ room4.description = "Upon entering the room, you hear a loud \'BANG\' as steel b
 room4.inventory=[
     {
       name:'cake',
+      mobile:true,
       use:function(){
         room4.description = "Upon entering the room, you hear a loud \'BANG\' as steel bars fall"+
           " covering the doorway you just came through. You see no other exit from the room."+
@@ -135,6 +158,7 @@ room4.inventory=[
     },
     {
       name:'note',
+      mobile:true,
       use:function(target){
         playing = false;
         return 'The note reads: Here is the cake as promised.\n'+

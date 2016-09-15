@@ -45,6 +45,11 @@ function addChar(event){
       lines[lines.length-1] = lastLine.substring(0, lastLine.length - 1);
     }
   }
+  // if we pressed the shift key, do not add a character
+  else if(code == 16){
+    return;
+  }
+
   // else we just need to add a new character
   else{
 
