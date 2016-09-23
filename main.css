@@ -63,7 +63,8 @@ p.incognito{
 
 img.square{
   height:350px;
-  width:400px;
+  width:350px;
+  background-size: 350px 350px;
 }
 
 h2{
