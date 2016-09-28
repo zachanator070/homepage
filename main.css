@@ -55,8 +55,8 @@ img.incognito{
 }
 
 p.incognito{
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 30px;
 }
 
@@ -94,7 +94,7 @@ img.icon{
 
 img.med{
   height: 300px;
-  width: 500px;
+  width: 400px;
 }
 
 img.banner{
