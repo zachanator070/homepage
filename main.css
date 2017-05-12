@@ -9,7 +9,7 @@ body{
 .horizontal-tile{
   background-color: rgba(255, 255, 255, 0.75);
   text-align: center;
-  padding:10px;
+  padding:50px;
   font-size: 20px;
 }
 
@@ -31,18 +31,15 @@ h1{
 }
 
 h1.accounts{
-  margin-top:100px;
-  margin-bottom:125px;
+  margin-bottom:50px;
 }
 
 h1.iq{
-  margin-top: 100px;
-  margin-bottom: 50px;
+
 }
 
 h1.incognito{
-  margin-top:100px;
-  margin-bottom:125px;
+  margin-bottom:50px;
   color: black;
   font-family: 'Armata', sans-serif;
   font-size: 60px;
@@ -64,7 +61,7 @@ img.square{
   height:350px;
   width:350px;
   background-size: 350px 350px;
-  margin-bottom: 15px;
+  margin-bottom: 50px;
 }
 
 h2{
@@ -119,4 +116,8 @@ div.accounts{
 div.iq{
   background-repeat: no-repeat;
   background-size: 100% 100%;
+}
+
+ul{
+	list-style-type: none;
 }
