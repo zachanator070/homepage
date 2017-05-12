@@ -44,8 +44,18 @@ function showRoomInfo(tokens){
     addNewLine('Too many arguments given.');
   }
   else{
-    addNewLine(position.description);
+	printRoomDescription();
   }
+}
+
+function printRoomDescription(){
+	description = position.description
+	position.inventory.forEach(function(item){
+		if(item.hasOwnProperty("description")){			
+		  description += " " + item.description;
+		}
+    });
+    addNewLine(description);
 }
 
 function showInventory(tokens){
@@ -74,7 +84,7 @@ function doGo(tokens){
       if(position.hasOwnProperty('northDoor')){
         if(position.northDoor.status == "unlocked"){
           position = position.northDoor.room;
-          addNewLine(position.description);
+          printRoomDescription();
         }
         else{
           addNewLine('The door is locked.')
@@ -89,7 +99,7 @@ function doGo(tokens){
       if(position.hasOwnProperty('southDoor')){
         if(position.southDoor.status == "unlocked"){
           position = position.southDoor.room;
-          addNewLine(position.description);
+          printRoomDescription();
         }
         else{
           addNewLine('The door is locked.')
@@ -104,7 +114,7 @@ function doGo(tokens){
       if(position.hasOwnProperty('eastDoor')){
         if(position.eastDoor.status == "unlocked"){
           position = position.eastDoor.room;
-          addNewLine(position.description);
+          printRoomDescription();
         }
         else{
           addNewLine('The door is locked.')
@@ -119,7 +129,7 @@ function doGo(tokens){
       if(position.hasOwnProperty('westDoor')){
         if(position.westDoor.status == "unlocked"){
           position = position.westDoor.room;
-          addNewLine(position.description);
+          printRoomDescription();
         }
         else{
           addNewLine('The door is locked.')
@@ -143,8 +153,13 @@ function doUse(tokens){
     var name = tokens[1].value;
     var item = findItem(name);
     if(item != null){
-      var result = item.use(null);
-      addNewLine(result);
+		if(item.hasOwnProperty('use')){
+		  var result = item.use(null);
+		  addNewLine(result);			
+		}
+		else{
+			addNewLine("I cannot do that with a " + item.name)
+		}
     }
     else{
       addNewLine("You cannot find a "+name);
@@ -161,8 +176,14 @@ function doUse(tokens){
       var item2 = findItem(name2);
 
       if(item2 != null){
-        var result = item1.use(item2);
-        addNewLine(result);
+		  if(tokens[0].value.toLowerCase() == "attack"){
+			  var result = item2.use(item1);
+			  addNewLine(result);
+		  }
+		  else{
+			  var result = item1.use(item2);
+			  addNewLine(result);			  
+		  }
       }
       else{
         addNewLine("You cannot find a "+name2);
@@ -263,7 +284,7 @@ function showHelp(tokens){
     "HELP [command]\n"+
     "GO [north | south | east | west]\n"+
     "USE [item]\n"+
-    "USE [item>] WITH [item]\n"+
+    "USE [item] WITH [item]\n"+
     "TAKE [item]\n"+
     "INVENTORY\n"+
     "INFO");

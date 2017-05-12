@@ -31,7 +31,7 @@ room2.inventory = [
     {
       name:'book',
       mobile:true,
-      description:" An old book lies propped uo against the wall. It's pages look filled with "+
+      description:"An old book lies propped uo against the wall. It's pages look filled with "+
       "wisdom from the sages of old.",
       use:function(target){
         if(target == null){
@@ -93,7 +93,7 @@ room2.inventory = [
       "peaking through the window.",
       use:function(target){
         if(target == null){
-          return "You peer through the window, you see a weapon of incredible strength inside, but it is out of your reach.";
+          return "You peer through the window, a brilliant light prevents you from seeing much.";
         }
         else{
           return "You place the "+target.name+" up against the glass so that the "+ target.name +
@@ -150,7 +150,7 @@ room4.inventory=[
       use:function(){
         room4.description = "Upon entering the room, you hear a loud \'BANG\' as steel bars fall"+
           " covering the doorway you just came through. You see no other exit from the room."+
-          " The table have the reminants of a cake on it, left over from your party for one."+
+          " The table has the reminants of a cake on it, left over from your party for one."+
           " A note is on the table next to the cake.";
         return "You stuff your face in the cake. No one is around to enjoy this cake,"+
         " so you have a sad birthday party by yourself.";
