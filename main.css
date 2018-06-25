@@ -30,20 +30,13 @@ h1{
   margin:0px;
 }
 
-h1.accounts{
-  margin-bottom:50px;
-}
 
-h1.iq{
-
-}
-
-h1.incognito{
+#incognito{
   margin-bottom:50px;
   color: black;
   font-family: 'Armata', sans-serif;
   font-size: 60px;
-  text-decoration: line-through rgba(255, 255, 255, 0.5);;
+  text-decoration: line-through white;
 }
 
 img.incognito{
@@ -51,37 +44,11 @@ img.incognito{
   margin-bottom:125px;
 }
 
-p.incognito{
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 30px;
-}
-
 img.square{
   height:350px;
   width:350px;
   background-size: 350px 350px;
   margin-bottom: 50px;
-}
-
-h2{
-  padding:30px;
-}
-
-div.about{
-  text-align: center;
-}
-
-ul.about{
-  padding:10px;
-  text-align: left;
-  width: 33%;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-li.about{
-  padding:5px;
 }
 
 img.icon{
@@ -109,15 +76,28 @@ img.left{
   margin-right:100px;
 }
 
-div.accounts{
+.ul-no-style{
+  list-style-type: none;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.padding-med{
+  padding:30px;
+}
+
+.padding-large{
   padding:50px;
 }
 
-div.iq{
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+.bottom-padding-med{
+  padding-bottom: 30px;
 }
 
-ul{
-	list-style-type: none;
+.top-padding-med{
+  padding-top: 30px;
 }
+
+/* I believe these are not used*/
