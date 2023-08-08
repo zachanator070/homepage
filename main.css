@@ -1,6 +1,7 @@
 
-body{
+.parallax{
   background-image: url('images/mountains.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: 'Armata', sans-serif;
@@ -99,5 +100,3 @@ img.left{
 .top-padding-med{
   padding-top: 30px;
 }
-
-/* I believe these are not used*/
